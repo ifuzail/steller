@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import{ products} from "@/utils/constant";
+import {products} from "@/utils/constant";
 
 const filterStore = create((set) => ({
   products: [...products], // Copy the products array

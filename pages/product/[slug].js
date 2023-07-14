@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import Navbar from '../components/Navbar';
+import Navbar from '@/components/Navbar';
 import {products} from '@/utils/constant';
 import { FaHeart, FaShoppingCart } from 'react-icons/fa';
-import useCartStore from '../store/cartFunc';
+import useCartStore from '@/store/cartFunc';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import useFavoritesStore from '../store/favoritesStore';
+import useFavoritesStore from '@/store/favoritesStore';
 import Link from 'next/link';
-import RelatedProductCard from '../components/RelatedProductCard';
+import RelatedProductCard from '@/components/RelatedProductCard';
 
 const Product = ({ product }) => {
   const { name, price, imageUrl, id, description, slug } = product;

@@ -1,4 +1,4 @@
-import {create} from 'zustand';
+import { create } from 'zustand';
 import { products } from '@/utils/constant';
 
 const useFavoritesStore = create((set) => ({

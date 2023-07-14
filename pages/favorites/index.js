@@ -1,12 +1,11 @@
 import React from 'react';
-import favoritesStore from '../store/favoritesStore';
-import ProductCard from '../components/ProductCard';
-import Navbar from '../components/Navbar';
-import useFavoritesStore from '../store/favoritesStore';
+import useFavoritesStore from '@/store/favoritesStore';
+import ProductCard from '@/components/ProductCard';
+import Navbar from '@/components/Navbar';
 import { toast } from 'react-toastify';
 
 const FavoritePage = () => {
-  const { favorites } = favoritesStore();
+  const { favorites } = useFavoritesStore();
   const removeFromFavorites = useFavoritesStore((state) => state.removeFromFavorites);
 
   const handleRemoveFromFavorites = (id) => {

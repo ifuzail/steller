@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import useCartStore from '../store/cartFunc';
+import useCartStore from '@/store/cartFunc';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 

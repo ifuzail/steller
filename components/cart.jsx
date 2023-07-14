@@ -1,5 +1,5 @@
 import React from 'react';
-import useCartStore from '../store/cartFunc';
+import useCartStore from '@/store/cartFunc';
 import { TiDelete } from 'react-icons/ti';
 import Link from 'next/link';
 

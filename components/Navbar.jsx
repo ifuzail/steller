@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { FaArrowRight, FaShoppingCart, FaFilter, FaHeart } from 'react-icons/fa';
-import Cart from './cart';
-import useCartStore from '../store/cartFunc';
+import CartPage from './cart';
+import useCartStore from '@/store/cartFunc';
 import Link from 'next/link';
 import Sidebar from './Sidebar';
 
@@ -79,7 +79,7 @@ const Navbar = () => {
                 </span>
               )}
             </button>
-            {isCartOpen && <Cart />}
+            {isCartOpen && <CartPage />}
           </div>
         </div>
       </div>

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import useCartStore from '../store/cartFunc';
+import useCartStore from '@/store/cartFunc';
 import Link from 'next/link';
 
 const CheckoutPage = () => {

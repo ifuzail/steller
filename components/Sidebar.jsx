@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import filterStore from '../store/filterStore';
+import filterStore from '@/store/filterStore';
 import {products} from '@/utils/constant';
 
 const Sidebar = () => {
