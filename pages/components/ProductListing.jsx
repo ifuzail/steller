@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import ProductCard from "./ProductCard";
 import products from "@/utils/constant";
 
 import filterStore from '../store/filterStore';
-import Link from "next/link";
+
 
 const ProductListing = () => {
   const { filters } = filterStore();
