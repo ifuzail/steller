@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
-import products from '@/utils/constant';
+import {products} from '@/utils/constant';
 
 const CheckoutPage = ({ product }) => {
   const [firstName, setFirstName] = useState('');

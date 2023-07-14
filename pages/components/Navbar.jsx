@@ -48,7 +48,7 @@ const Navbar = () => {
           </Link>
           <div className="ml-4 relative flex justify-between items-center gap-5">
           <Link href='/favorites/'>
-          <button class="bg-transparent  text-gray-400 hover:text-white focus:outline-none">
+          <button className="bg-transparent  text-gray-400 hover:text-white focus:outline-none">
             <FaHeart/>
           </button>
           </Link>

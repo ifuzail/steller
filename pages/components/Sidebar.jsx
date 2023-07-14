@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import filterStore from '../store/filterStore';
-import products from '@/utils/constant';
+import {products} from '@/utils/constant';
 
 const Sidebar = () => {
   const { filters, setCategory, setCompany, setPrice, setSearch, getFilteredProducts, clearFilters } = filterStore();

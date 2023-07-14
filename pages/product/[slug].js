@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Navbar from '../components/Navbar';
-import products from '@/utils/constant';
+import {products} from '@/utils/constant';
 import { FaHeart, FaShoppingCart } from 'react-icons/fa';
 import useCartStore from '../store/cartFunc';
 import { toast } from 'react-toastify';

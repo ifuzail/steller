@@ -1,4 +1,4 @@
-export const products = [
+ export const products = [
   {
     id: 1,
     name: 'Nike Air Max 95-sport shoes',

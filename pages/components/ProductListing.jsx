@@ -1,6 +1,6 @@
 import React from "react";
 import ProductCard from "./ProductCard";
-import products from "@/utils/constant";
+import {products} from "@/utils/constant";
 
 import filterStore from '../store/filterStore';
 
