@@ -6,13 +6,12 @@ import { toast } from 'react-toastify';
 
 const FavoritePage = () => {
   const { favorites } = useFavoritesStore();
-  const removeFromFavorites = useFavoritesStore((state) => state.removeFromFavorites);
+  const clearFavorites = useFavoritesStore((state) => state.clearFavorites);
 
-  const handleRemoveFromFavorites = (id) => {
-    removeFromFavorites(id);
-    toast.error('Item removed from favorites');
-  };
-
+ const handleClearFavorites = () => {
+  clearFavorites();
+  toast.error('Items cleared from favorites');
+ }
   return (
     <div>
       <Navbar />
@@ -21,8 +20,10 @@ const FavoritePage = () => {
         <p className="text-gray-500 text-center mt-5">Your favorite list is empty.</p>
       ) : (
         <div className="flex lg:flex-row flex-col p-10 gap-5 flex-wrap justify-center">
+           <button className='font-medium text-red-500 hover:text-red-700' onClick={handleClearFavorites}>clear favorites</button>
           {favorites.map((product) => (
             <div key={product.id}>
+            
               <ProductCard
                 key={product.id}
                 slug={product.slug}
@@ -31,7 +32,7 @@ const FavoritePage = () => {
                 price={product.price}
                 imageUrl={product.imageUrl}
               />
-              <button className='font-medium text-red-500 hover:text-red-700' onClick={() => handleRemoveFromFavorites(product.id)}>Remove</button>
+            
             </div>
           ))}
         </div>
