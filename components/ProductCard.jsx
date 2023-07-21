@@ -50,7 +50,7 @@ const ProductCard = ({ name, price, imageUrl, id, slug }) => {
   const isItemAdded = cartItems.some((item) => item.id === id);
 
   return (
-    <div className="max-w-xs mx-1 bg-white shadow-md rounded-lg overflow-hidden w-72">
+    <div className="max-w-xs mx-1 bg-white shadow-md rounded-lg overflow-hidden w-72 transform transition-all hover:scale-110 ">
       <button
         className={
           isFavorite
