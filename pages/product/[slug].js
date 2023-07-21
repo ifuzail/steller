@@ -76,7 +76,7 @@ const Product = ({ product }) => {
 
                 <Link href={`/productCheckout/${slug}`}>
               
-                <button className="flex ml-auto text-white bg-slate-900 border-0 py-2 px-6 focus:outline-none hover:bg-rose-400 rounded">
+                <button className="flex ml-auto text-white bg-emerald-900 border-0 py-2 px-6 focus:outline-none hover:bg-rose-500 rounded">
                   Buy Now
                 </button>
                 </Link>
@@ -109,7 +109,7 @@ const Product = ({ product }) => {
       {/* related products */}
       <section>
        <h1 className='text-gray-900 text-3xl title-font font-medium mb-5 mx-10 m'>Related products</h1>
-       <div className='flex flex-row overflow-x-scroll gap-10'>
+       <div className='flex flex-row overflow-x-scroll  mb-10'>
        {products.map((product) => (
                 <RelatedProductCard
                   key={product.id}

@@ -36,6 +36,7 @@ const CartPage = () => {
   return (
     <div className="relative">
       {isCartOpen && (
+        <>
         <div className="absolute top-5 right-0 bg-white rounded-lg p-4 shadow-lg lg:w-[400px] lg:h-[600px] w-[300px] h-[500px] overflow-y-auto z-10">
           {cartItems.length > 0 ? (
             <div>
@@ -46,10 +47,10 @@ const CartPage = () => {
               )}
               <ul className="space-y-4 mt-10">
                 {cartItems.map((item) => (
-                  <li key={item.id} className="flex items-center">
+                  <li key={item.id} className="flex items-center bg-white rounded-md shadow-md">
                     <img src={item.imageUrl} alt={item.name} className="w-16 h-16 object-cover mr-4" />
                     <div className="w-[260px]">
-                      <h3 className="text-lg font-semibold truncate">{item.name}</h3>
+                      <h3 className="text-lg font-semibold lg:w-full w-40 truncate">{item.name}</h3>
                       <p className="text-gray-600">Price: ${item.price}</p>
                       <div className="flex items-center">
                         <button
@@ -84,7 +85,7 @@ const CartPage = () => {
               
                 <Link href='/checkout'>
                 <button
-                  className="mt-4 bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded"
+                  className="mt-4 bg-red-500  hover:bg-green-500 text-white font-bold text-lg w-full h-12 rounded-xl"
                 >
                   Proceed to Buy
                 </button>
@@ -96,8 +97,10 @@ const CartPage = () => {
             <p className="text-red-500 font-bold text-center relative top-1/2 ">Your cart is empty.</p>
           )}
         </div>
+        </>
       )}
     </div>
+    
   );
 };
 

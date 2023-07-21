@@ -16,49 +16,32 @@ const Navbar = () => {
     setIsFilterOpen(!isFilterOpen);
   };
 
-  const [isNavbarFixed, setNavbarFixed] = useState(false);
-
-  // Handle scroll event
-  const handleScroll = () => {
-    if (window.pageYOffset > 0) {
-      setNavbarFixed(true);
-    } else {
-      setNavbarFixed(false);
-    }
-  };
-
-  // Attach scroll event listener
-  useEffect(() => {
-    window.addEventListener('scroll', handleScroll);
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
+  
 
   return (
-    <nav className={`bg-slate-950 ${isNavbarFixed ? 'fixed top-0 left-0 right-0 z-50' : ''}`}>
+    <nav className='bg-gray-50 shadow-xl fixed top-0 left-0 right-0 '>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 gap-5">
           
           <Link href="/">
             <div className="flex items-center justify-center gap-2">
               <img src="/logo.png" width={28} height={24} alt="" />
-              <h1 className="text-white text-lg font-bold">STELLER</h1>
+              <h1 className="text-black text-lg font-bold">STELLER</h1>
             </div>
           </Link>
-          <div className="ml-4 relative flex justify-between items-center gap-5">
+          <div className="ml-4 relative flex justify-between items-center gap-9">
           <Link href='/favorites/'>
-          <button className="bg-transparent  text-gray-400 hover:text-white focus:outline-none">
-            <FaHeart/>
+          <button className="bg-transparent  text-slate-700 hover:text-slate-900 focus:outline-none mt-1">
+            <FaHeart fontSize={20}/>
           </button>
           </Link>
-          <button  className="bg-transparent  text-gray-400 hover:text-white focus:outline-none"
+          <button  className="bg-transparent  text-slate-700 hover:text-slate-900 focus:outline-none"
               aria-label="filter" onClick={handleFilterToggle}>
-            <FaFilter />
+            <FaFilter fontSize={19} />
           </button>
           {isFilterOpen && <Sidebar />}
             <button
-              className="bg-transparent text-gray-400 hover:text-white focus:outline-none"
+              className="bg-transparent text-slate-700 hover:text-slate-900 focus:outline-none"
               aria-label="Cart"
               onClick={toggleCart}
             >
