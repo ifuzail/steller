@@ -9,7 +9,7 @@ import CartPage from "./cart";
 import useCartStore from "@/store/cartFunc";
 import Link from "next/link";
 import Sidebar from "./Sidebar";
-import { UserButton } from "@clerk/nextjs";
+
 
 const Navbar = () => {
   const isCartOpen = useCartStore((state) => state.isCartOpen);
@@ -33,9 +33,6 @@ const Navbar = () => {
             </div>
           </Link>
           <div className="ml-4 relative flex justify-between items-center gap-9">
-            <div>
-              <UserButton afterSignOutUrl="/" />
-            </div>
             <Link href="/favorites/">
               <button className="bg-transparent  text-slate-700 hover:text-slate-900 focus:outline-none mt-1">
                 <FaHeart fontSize={20} />

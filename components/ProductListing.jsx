@@ -1,12 +1,31 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ProductCard from "./ProductCard";
-import {products} from "@/utils/constant";
-
+import supabase from "@/utils/supabase";
 import filterStore from '../store/filterStore';
 
 
 const ProductListing = () => {
+
+  const [products, setProducts] = useState([])
   const { filters } = filterStore();
+
+
+// we are using CSR client side rendering 
+ useEffect(() => {
+   async function fetchProducts() {
+    const {data: products , error} = await supabase.from('products').select('*');
+    console.log('Fetched Products:', products); 
+      if(error) {
+        console.error('Error fetching Data:', error.message)
+      } else {
+        setProducts(products)
+      }
+   }
+   fetchProducts();
+ }, [])
+ 
+
+
 
   const filteredProducts = products.filter((product) => {
     // Filter by category

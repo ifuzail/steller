@@ -1,8 +1,8 @@
 import { create } from "zustand";
-import {products} from "@/utils/constant";
+import supabase from "@/utils/supabase";
 
 const filterStore = create((set) => ({
-  products: [...products], // Copy the products array
+  products: [],
 
   filters: {
     category: '',
@@ -50,7 +50,6 @@ const filterStore = create((set) => ({
   getFilteredProducts: () => {
     const { category, company, price, search } = filterStore.getState().filters;
 
-    // Apply filters based on selected criteria
     let filteredProducts = filterStore.getState().products;
 
     if (category) {
@@ -80,7 +79,24 @@ const filterStore = create((set) => ({
 
     return filteredProducts;
   },
+
   clearFilters: () => set({ filters: { category: '', company: '', price: '', search: '' } }),
+
+  fetchProducts: async () => {
+    try {
+      const { data: products, error } = await supabase.from('products').select('*');
+      if (error) {
+        console.error('Error fetching products:', error.message);
+      } else {
+        set({ products });
+      }
+    } catch (error) {
+      console.error('Error fetching products:', error.message);
+    }
+  },
 }));
+
+// Fetch products immediately after creating the store
+filterStore.getState().fetchProducts();
 
 export default filterStore;

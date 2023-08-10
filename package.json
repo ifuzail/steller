@@ -10,10 +10,12 @@
   },
   "dependencies": {
     "@clerk/nextjs": "^4.23.2",
+    "@supabase/supabase-js": "^2.32.0",
     "@tailwindcss/forms": "^0.5.4",
     "autoprefixer": "10.4.14",
     "eslint": "8.44.0",
     "eslint-config-next": "13.4.8",
+    "init": "^0.1.2",
     "next": "^13.4.8",
     "postcss": "8.4.25",
     "react": "^18.2.0",
@@ -24,4 +26,5 @@
     "tailwindcss": "3.3.2",
     "zustand": "^4.3.9"
   }
+ 
 }
