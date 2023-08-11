@@ -9,7 +9,7 @@ import CartPage from "./cart";
 import useCartStore from "@/store/cartFunc";
 import Link from "next/link";
 import Sidebar from "./Sidebar";
-
+import { UserButton } from "@clerk/nextjs";
 
 const Navbar = () => {
   const isCartOpen = useCartStore((state) => state.isCartOpen);
@@ -23,7 +23,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="bg-gray-50 shadow-xl fixed top-0 left-0 right-0 z-10">
+    <nav className="bg-gray-50 fixed top-0 left-0 right-0 z-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 gap-5">
           <Link href="/">
@@ -39,13 +39,13 @@ const Navbar = () => {
               </button>
             </Link>
 
-            <button
+            {/* <button
               className="bg-transparent  text-slate-700 hover:text-slate-900 focus:outline-none"
               aria-label="filter"
               onClick={handleFilterToggle}
             >
               <FaFilter fontSize={19} />
-            </button>
+            </button> */}
             {isFilterOpen && <Sidebar />}
             <button
               className="bg-transparent text-slate-700 hover:text-slate-900 focus:outline-none"
@@ -70,6 +70,9 @@ const Navbar = () => {
               )}
             </button>
             {isCartOpen && <CartPage />}
+            <div>
+              <UserButton afterSignOutUrl="/" />
+            </div>
           </div>
         </div>
       </div>

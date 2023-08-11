@@ -50,12 +50,12 @@ const ProductCard = ({ name, price, imageUrl, id, slug }) => {
   const isItemAdded = cartItems.some((item) => item.id === id);
 
   return (
-    <div className="max-w-xs mx-1 bg-white shadow-md rounded-lg overflow-hidden w-72 transform transition-all hover:scale-110 ">
+    <div className="max-w-xs mx-1 bg-white shadow-md rounded-lg overflow-hidden w-72 ">
       <button
         className={
           isFavorite
-            ? "text-red-500 bg-gray-100 rounded-full w-8 h-8 bg-transparent border-0 inline-flex items-center justify-center ml-4"
-            : "rounded-full w-8 h-8 bg-gray-300 text-white inline-flex items-center justify-center ml-4"
+            ? "text-red-500 bg-gray-100 rounded-full w-8 h-8 bg-transparent border-0 inline-flex items-center justify-center ml-4 mt-5 "
+            : "rounded-full w-8 h-8 bg-gray-300 text-white inline-flex items-center justify-center ml-4 mt-5"
         }
         onClick={isFavorite ? handleRemoveFromFavorites : handleAddToFavorites}
       >

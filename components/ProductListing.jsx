@@ -58,13 +58,10 @@ const ProductListing = () => {
       <div className="flex">
         <div className="flex-grow">
       
-          <div className="container mx-auto p-8">
+          <div className="container mx-auto p-8 mt-10">
             <div className="flex items-center gap-3 mb-10">
-         
-            <h1 className="text-4xl font-bold  text-slate-800">Products</h1>
-           
             </div>
-            <div className="flex flex-row flex-wrap justify-center items-center gap-10">
+            <div className="flex flex-row flex-wrap justify-center items-center gap-2">
               {filteredProducts.map((product) => (
                 <ProductCard
                   key={product.id}

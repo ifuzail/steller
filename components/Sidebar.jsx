@@ -1,9 +1,17 @@
 import React, { useEffect } from 'react';
 import filterStore from '@/store/filterStore';
-import {products} from '@/utils/constant';
+import { products } from '@/utils/constant';
 
 const Sidebar = () => {
-  const { filters, setCategory, setCompany, setPrice, setSearch, getFilteredProducts, clearFilters } = filterStore();
+  const {
+    filters,
+    setCategory,
+    setCompany,
+    setPrice,
+    setSearch,
+    getFilteredProducts,
+    clearFilters,
+  } = filterStore();
 
   useEffect(() => {
     // Fetch filtered products whenever the filter values change
@@ -33,7 +41,7 @@ const Sidebar = () => {
   };
 
   const handleClearFilters = () => {
-     clearFilters()
+    clearFilters();
   };
 
   // Get unique categories and companies from the products data
@@ -41,12 +49,12 @@ const Sidebar = () => {
   const companies = Array.from(new Set(products.map((product) => product.company)));
 
   return (
-    <div className="fixed top-16 right-4 h-96 w-48 bg-white p-4 rounded z-10">
-      <h2 className="text-xl font-semibold mb-4">Filters</h2>
-      
-      <div className='flex flex-col items-center'>
+    <div className="bg-stone-950 p-4 w-1/5 min-h-screen lg:block hidden">
+      <h2 className="text-xl font-semibold mb-16">Filters</h2>
+
+      <div className="flex flex-col space-y-4">
         <select
-          className="w-full border border-gray-300 rounded px-3 py-2 mb-4"
+          className="border border-gray-300 rounded px-3 py-2"
           value={filters.category}
           onChange={handleCategoryChange}
         >
@@ -59,7 +67,7 @@ const Sidebar = () => {
         </select>
 
         <select
-          className="w-full border border-gray-300 rounded px-3 py-2 mb-4"
+          className="border border-gray-300 rounded px-3 py-2"
           value={filters.company}
           onChange={handleCompanyChange}
         >
@@ -73,7 +81,7 @@ const Sidebar = () => {
 
         <input
           type="number"
-          className="w-full border border-gray-300 rounded px-3 py-2 mb-4"
+          className="border border-gray-300 rounded px-3 py-2"
           value={filters.price}
           onChange={handlePriceChange}
           placeholder="Max Price"
@@ -81,12 +89,14 @@ const Sidebar = () => {
 
         <input
           type="text"
-          className="w-full border border-gray-300 rounded px-3 py-2 mb-4"
+          className="border border-gray-300 rounded px-3 py-2"
           value={filters.search}
           onChange={handleSearchChange}
           placeholder="Search"
         />
-        <button className='bg-slate-900 text-white w-28 h-8 rounded' onClick={handleClearFilters}>Reset Filters</button>
+        <button className="bg-gray-100 text-black w-full py-2 rounded" onClick={handleClearFilters}>
+          Reset Filters
+        </button>
         {/* Render other sidebar components */}
       </div>
     </div>
