@@ -1,8 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import filterStore from '@/store/filterStore';
 import { products } from '@/utils/constant';
 
-const Sidebar = () => {
+const Topbar = () => {
+  const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
+
   const {
     filters,
     setCategory,
@@ -49,8 +51,17 @@ const Sidebar = () => {
   const companies = Array.from(new Set(products.map((product) => product.company)));
 
   return (
-    <div className="bg-emerald-950 p-4 w-1/5 min-h-screen lg:block hidden">
-      <h2 className="text-xl font-semibold mb-16">Filters</h2>
+    <div className={`bg-emerald-950 p-4 w-full min-h-screen lg:w-1/5 ${isMobileMenuOpen ? 'block' : 'hidden'}`}>
+      <h2 className="text-xl font-semibold mb-4 lg:hidden">Filters</h2>
+      <div className="flex justify-between items-center lg:hidden">
+        <h2 className="text-xl font-semibold">Filters</h2>
+        <button
+          className="text-white"
+          onClick={() => setMobileMenuOpen(!isMobileMenuOpen)}
+        >
+          {isMobileMenuOpen ? 'Close' : 'Open'}
+        </button>
+      </div>
 
       <div className="flex flex-col space-y-4">
         <select
@@ -103,4 +114,4 @@ const Sidebar = () => {
   );
 };
 
-export default Sidebar;
+export default Topbar;

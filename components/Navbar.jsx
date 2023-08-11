@@ -8,7 +8,6 @@ import {
 import CartPage from "./cart";
 import useCartStore from "@/store/cartFunc";
 import Link from "next/link";
-import Sidebar from "./Sidebar";
 import { UserButton } from "@clerk/nextjs";
 
 const Navbar = () => {
@@ -18,9 +17,6 @@ const Navbar = () => {
 
   const [isFilterOpen, setIsFilterOpen] = useState(false);
 
-  const handleFilterToggle = () => {
-    setIsFilterOpen(!isFilterOpen);
-  };
 
   return (
     <nav className="bg-gray-50 fixed top-0 left-0 right-0 z-10">
@@ -28,7 +24,7 @@ const Navbar = () => {
         <div className="flex items-center justify-between h-16 gap-5">
           <Link href="/">
             <div className="flex items-center justify-center gap-2">
-              <img src="/logo.png" width={28} height={24} alt="" />
+              <img src="/shopping-cart.png" width={28} height={24} alt="" />
               <h1 className="text-black text-lg font-bold">STELLER</h1>
             </div>
           </Link>
@@ -38,15 +34,9 @@ const Navbar = () => {
                 <FaHeart fontSize={20} />
               </button>
             </Link>
-
-            {/* <button
-              className="bg-transparent  text-slate-700 hover:text-slate-900 focus:outline-none"
-              aria-label="filter"
-              onClick={handleFilterToggle}
-            >
-              <FaFilter fontSize={19} />
-            </button> */}
-            {isFilterOpen && <Sidebar />}
+            <button>
+              <FaFilter font-fontSize={20}/>
+            </button>
             <button
               className="bg-transparent text-slate-700 hover:text-slate-900 focus:outline-none"
               aria-label="Cart"
