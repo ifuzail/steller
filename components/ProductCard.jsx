@@ -1,25 +1,20 @@
+import React, { useState, useEffect } from 'react';
 import Link from "next/link";
-import useCartStore from "@/store/cartFunc";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import useFavoritesStore from '@/store/favoritesStore';
-import { useEffect, useState } from "react";
 import { FaHeart } from "react-icons/fa";
+import useCartStore from "@/store/cartFunc";
 
 
 const ProductCard = ({ name, price, imageUrl, id, slug }) => {
   const addToCart = useCartStore((state) => state.addToCart);
   const removeFromCart = useCartStore((state) => state.removeFromCart);
   const cartItems = useCartStore((state) => state.cartItems);
-  const addToFavorites = useFavoritesStore((state) => state.addToFavorites);
-  const removeFromFavorites = useFavoritesStore((state) => state.removeFromFavorites);
-  const favorites = useFavoritesStore((state) => state.favorites);
-  const [isFavorite, setIsFavorite] = useState(false);
-  const product = { name, price, imageUrl, id }
+  const product = { name, price, imageUrl, id };
+
 
   const handleToggleCart = () => {
-
-    if (cartItems.some((item) => item.name === name)) {
+    if (cartItems.some((item) => item.id === id)) {
       removeFromCart(product);
       toast.error("Item removed from cart");
     } else {
@@ -28,39 +23,10 @@ const ProductCard = ({ name, price, imageUrl, id, slug }) => {
     }
   };
 
-  
-
-  useEffect(() => {
-    setIsFavorite(favorites.some((favoriteProduct) => favoriteProduct.id === id));
-  }, [favorites, id]);
-
-  const handleAddToFavorites = () => {
-    addToFavorites(product);
-    setIsFavorite(true);
-    toast.success('Item added to favorites');
-  };
-
-  const handleRemoveFromFavorites = () => {
-    removeFromFavorites(id);
-    setIsFavorite(false);
-    toast.error('Item removed from favorites');
-  };
-
-
   const isItemAdded = cartItems.some((item) => item.id === id);
 
   return (
-    <div className="max-w-xs mx-1 bg-white shadow-md rounded-lg overflow-hidden w-72 ">
-      <button
-        className={
-          isFavorite
-            ? "text-red-500 bg-gray-100 rounded-full w-8 h-8 bg-transparent border-0 inline-flex items-center justify-center ml-4 mt-5 "
-            : "rounded-full w-8 h-8 bg-gray-300 text-white inline-flex items-center justify-center ml-4 mt-5"
-        }
-        onClick={isFavorite ? handleRemoveFromFavorites : handleAddToFavorites}
-      >
-        <FaHeart  fontSize={16} />
-      </button>
+    <div className="max-w-xs mx-1 bg-white shadow-md rounded-lg overflow-hidden w-72">
       <Link href={`/product/${slug}`}>
         <div className="">
           <img
@@ -69,7 +35,6 @@ const ProductCard = ({ name, price, imageUrl, id, slug }) => {
             alt={name}
           />
         </div>
-
         <div className="py-4 px-6">
           <h2 className="text-gray-800 text-lg font-semibold truncate hover:underline hover:text-red-600">
             {name}

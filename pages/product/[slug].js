@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import Navbar from '@/components/Navbar';
-import {products} from '@/utils/constant';
 import { FaHeart, FaShoppingCart } from 'react-icons/fa';
 import useCartStore from '@/store/cartFunc';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import useFavoritesStore from '@/store/favoritesStore';
 import Link from 'next/link';
 import RelatedProductCard from '@/components/RelatedProductCard';
+import supabase from '@/utils/supabase';
 
 const Product = ({ product }) => {
   const { name, price, imageUrl, id, description, slug } = product;
@@ -15,29 +14,28 @@ const Product = ({ product }) => {
   const addToCart = useCartStore((state) => state.addToCart);
   const removeFromCart = useCartStore((state) => state.removeFromCart);
   const cartItems = useCartStore((state) => state.cartItems);
-  const addToFavorites = useFavoritesStore((state) => state.addToFavorites);
-  const removeFromFavorites = useFavoritesStore((state) => state.removeFromFavorites);
-  const favorites = useFavoritesStore((state) => state.favorites);
 
-  const [isFavorite, setIsFavorite] = useState(false);
 
-  useEffect(() => {
-    setIsFavorite(favorites.some((favoriteProduct) => favoriteProduct.id === id));
-  }, [favorites, id]);
 
-  const handleAddToFavorites = () => {
-    addToFavorites(product);
-    setIsFavorite(true);
-    toast.success('Item added to favorites');
-  };
+  const [products, setProducts] = useState([])
 
-  const handleRemoveFromFavorites = () => {
-    removeFromFavorites(id);
-    setIsFavorite(false);
-    toast.error('Item removed from favorites');
-  };
 
-  // 
+
+// we are using CSR client side rendering 
+ useEffect(() => {
+   async function fetchProducts() {
+    const {data: products , error} = await supabase.from('products').select('*');
+    console.log('Fetched Products:', products); 
+      if(error) {
+        console.error('Error fetching Data:', error.message)
+      } else {
+        setProducts(products)
+      }
+   }
+   fetchProducts();
+ }, [])
+
+  
 
   const handleToggleCart = () => {
     const product = { name, price, imageUrl, id };
@@ -79,18 +77,7 @@ const Product = ({ product }) => {
                 <button className="flex ml-auto text-white bg-emerald-900 border-0 py-2 px-6 focus:outline-none hover:bg-rose-500 rounded">
                   Buy Now
                 </button>
-                </Link>
-                {/* Favorite */}
-                <button
-                  className={
-                    isFavorite
-                      ? 'text-red-500 rounded-full w-10 h-10 bg-transparent border-0 inline-flex items-center justify-center ml-4'
-                      : 'rounded-full w-10 h-10 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-4'
-                  }
-                  onClick={isFavorite ? handleRemoveFromFavorites : handleAddToFavorites}
-                >
-                  <FaHeart />
-                </button>
+                </Link> 
                 <button
                   className={
                     isItemAdded
@@ -129,8 +116,16 @@ const Product = ({ product }) => {
 export default Product;
 
 export async function getStaticPaths() {
-  // Generate paths for all products
-  const paths = products.map((product) => ({
+  // Fetch all product slugs from Supabase
+  const { data, error } = await supabase.from('products').select('slug');
+  if (error) {
+    console.error('Error fetching product slugs:', error);
+    return {
+      notFound: true,
+    };
+  }
+
+  const paths = data.map((product) => ({
     params: { slug: product.slug },
   }));
 
@@ -138,11 +133,16 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  // Fetch the data for the specific product based on the slug
   const { slug } = params;
-  const product = products.find((product) => product.slug === slug);
 
-  if (!product) {
+  // Fetch product data from Supabase using the slug
+  const { data, error } = await supabase
+    .from('products')
+    .select('*')
+    .eq('slug', slug)
+    .single();
+
+  if (error || !data) {
     return {
       notFound: true,
     };
@@ -150,7 +150,7 @@ export async function getStaticProps({ params }) {
 
   return {
     props: {
-      product,
+      product: data,
     },
   };
 }

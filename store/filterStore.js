@@ -80,7 +80,15 @@ const filterStore = create((set) => ({
     return filteredProducts;
   },
 
-  clearFilters: () => set({ filters: { category: '', company: '', price: '', search: '' } }),
+  clearFilters: () => set((state) => ({
+    filters: {
+      ...state.filters,
+      category: '',
+      company: '',
+      price: '',
+      search: '',
+    },
+  })),
 
   fetchProducts: async () => {
     try {
