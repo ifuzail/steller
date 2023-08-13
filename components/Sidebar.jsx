@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import filterStore from '@/store/filterStore';
-import { products } from '@/utils/constant';
+import { categories, companies } from '@/utils/constant';
 
 const Sidebar = () => {
   const {
@@ -44,9 +44,6 @@ const Sidebar = () => {
     clearFilters();
   };
 
-  // Get unique categories and companies from the products data
-  const categories = Array.from(new Set(products.map((product) => product.category)));
-  const companies = Array.from(new Set(products.map((product) => product.company)));
 
   return (
     <div className="bg-emerald-950 p-4 w-1/5 min-h-screen lg:block hidden">

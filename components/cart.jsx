@@ -9,7 +9,6 @@ const CartPage = () => {
   const removeFromCart = useCartStore((state) => state.removeFromCart);
   const increaseQuantity = useCartStore((state) => state.increaseQuantity);
   const decreaseQuantity = useCartStore((state) => state.decreaseQuantity);
-  
 
   const handleRemoveFromCart = (item) => {
     removeFromCart(item);
@@ -31,12 +30,9 @@ const CartPage = () => {
     return totalPrice.toFixed(2);
   };
 
- 
-
   return (
     <div className="relative">
       {isCartOpen && (
-        <>
         <div className="absolute top-5 right-0 bg-white rounded-lg p-4 shadow-lg lg:w-[400px] lg:h-[600px] w-[300px] h-[500px] overflow-y-auto z-10">
           {cartItems.length > 0 ? (
             <div>
@@ -67,40 +63,33 @@ const CartPage = () => {
                           +
                         </button>
                       </div>
-                    
                       <button
                         className="text-red-600 text-2xl"
                         onClick={() => handleRemoveFromCart(item)}
                       >
                         <TiDelete />
                       </button>
-                    
-                     
                     </div>
                   </li>
                 ))}
               </ul>
               <div className="mt-6">
                 <h3 className="text-lg font-semibold">Total Price: ${getTotalPrice()}</h3>
-              
                 <Link href='/checkout'>
-                <button
-                  className="mt-4 bg-red-500  hover:bg-green-500 text-white font-bold text-lg w-full h-12 rounded-xl"
-                >
-                  Proceed to Buy
-                </button>
+                  <button
+                    className="mt-4 bg-red-500  hover:bg-green-500 text-white font-bold text-lg w-full h-12 rounded-xl"
+                  >
+                    Proceed to Buy
+                  </button>
                 </Link>
-               
               </div>
             </div>
           ) : (
-            <p className="text-red-500 font-bold text-center relative top-1/2 ">Your cart is empty.</p>
+            <p className="text-red-500 font-bold text-center relative top-1/2">Your cart is empty.</p>
           )}
         </div>
-        </>
       )}
     </div>
-    
   );
 };
 

@@ -162,3 +162,22 @@
 ];
 
 
+export const categories = [
+  'Sport Shoes',
+  'Smartphones',
+  'Headphones',
+  'Laptops',
+];
+
+export const companies = [
+  'Adidas',
+  'Nike',
+  'Woodland',
+  'OnePlus',
+  'Redmi',
+  'Boat',
+  'Apple',
+  'Acer',
+  'Dell',
+  'Samsung',
+];
