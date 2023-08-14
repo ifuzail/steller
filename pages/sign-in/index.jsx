@@ -1,5 +1,4 @@
-import { FaGoogle } from "react-icons/fa"; // Import the Google icon
-import supabase from "@/utils/supabase"; // Import your Supabase configuration
+import supabase from "@/utils/supabase"; 
 
 export default function signIn() {
   const handleGoogleSignIn = async () => {
@@ -12,7 +11,7 @@ export default function signIn() {
         },
       },
     });
-    // Handle the response, error, or user data as needed
+    
   };
 
   return (
