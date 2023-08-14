@@ -44,13 +44,13 @@ const CheckoutForm = ({ cartItems }) => {
         <p className="font-semibold mt-2">Total Price: ${totalPrice.toFixed(2)}</p>
       </div>
 
-      <div className="grid grid-cols-2 gap-4 mb-6">
+      <div className="grid grid-cols-2 gap-10 mb-6">
         <div>
           <label className="block mb-2">Full Name</label>
           <input
             type="text"
             {...register('fullName', { required: true })}
-            className={`input ${errors.fullName ? 'border-red-500' : 'bg-slate-200 rounded'}`}
+            className={`input ${errors.fullName ? 'border-red-500' : 'bg-slate-200 rounded w-36 p-2'}`}
           />
           {errors.fullName && <span className="text-red-600">Full Name is required</span>}
         </div>
@@ -59,7 +59,7 @@ const CheckoutForm = ({ cartItems }) => {
           <input
             type="email"
             {...register('email', { required: true })}
-            className={`input ${errors.email ? 'border-red-500' : 'bg-slate-200 rounded'}`}
+            className={`input ${errors.email ? 'border-red-500' : 'bg-slate-200 rounded w-36 p-2'}`}
           />
           {errors.email && <span className="text-red-600">Email is required</span>}
         </div>
@@ -70,12 +70,11 @@ const CheckoutForm = ({ cartItems }) => {
         <input
           type="text"
           {...register('address', { required: true })}
-          className={`input ${errors.address ? 'border-red-500' : 'bg-slate-200 rounded w-80'}`}
+          className={`input ${errors.address ? 'border-red-500' : 'bg-slate-200 rounded w-80 p-2'}`}
         />
         {errors.address && <span className="text-red-600">Address is required</span>}
       </div>
 
-      {/* Card Details */}
       <div className="mb-6">
         <label className="block mb-2">Card Number</label>
         <Controller
@@ -83,13 +82,13 @@ const CheckoutForm = ({ cartItems }) => {
           control={control}
           rules={{ required: true }}
           render={({ field }) => (
-            <input type="text" {...field} className={`input ${errors.cardNumber ? 'border-red-500' : 'bg-slate-200 rounded w-80'}`} />
+            <input type="text" {...field} className={`input ${errors.cardNumber ? 'border-red-500' : 'bg-slate-200 rounded p-2'}`} />
           )}
         />
         {errors.cardNumber && <span className="text-red-600">Card Number is required</span>}
       </div>
 
-      <div className="grid grid-cols-2 gap-4 mb-6">
+      <div className="grid grid-cols-2 gap-10 mb-6">
         <div>
           <label className="block mb-2">Expiration Date</label>
           <Controller
@@ -97,7 +96,7 @@ const CheckoutForm = ({ cartItems }) => {
             control={control}
             rules={{ required: true }}
             render={({ field }) => (
-              <input type="text" {...field} className={`input ${errors.expDate ? 'border-red-500' : 'bg-slate-200 rounded'}`} />
+              <input type="text" {...field} className={`input ${errors.expDate ? 'border-red-500' : 'bg-slate-200 rounded w-36 p-2'}`} />
             )}
           />
           {errors.expDate && <span className="text-red-600">Expiration Date is required</span>}
@@ -109,7 +108,7 @@ const CheckoutForm = ({ cartItems }) => {
             control={control}
             rules={{ required: true }}
             render={({ field }) => (
-              <input type="text" {...field} className={`input ${errors.cvv ? 'border-red-500' : 'bg-slate-200 rounded'}`} />
+              <input type="text" {...field} className={`input ${errors.cvv ? 'border-red-500' : 'bg-slate-200 rounded w-36 p-2'}`} />
             )}
           />
           {errors.cvv && <span className="text-red-600">CVV is required</span>}

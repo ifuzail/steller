@@ -43,6 +43,10 @@ const useCartStore = create((set) => {
         return { cartItems: updatedCartItems };
       }),
 
+      closeCart: () => {
+        set({ cartItems: [] });
+      },
+
       proceedToBuy: async () => {
         const cartItems = useCartStore.getState().cartItems;
   

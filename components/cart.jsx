@@ -1,7 +1,7 @@
-import React from 'react';
-import useCartStore from '@/store/cartFunc';
-import { TiDelete } from 'react-icons/ti';
-import Link from 'next/link';
+import React from "react";
+import useCartStore from "@/store/cartFunc";
+import { TiDelete } from "react-icons/ti";
+import Link from "next/link";
 
 const CartPage = () => {
   const isCartOpen = useCartStore((state) => state.isCartOpen);
@@ -9,6 +9,9 @@ const CartPage = () => {
   const removeFromCart = useCartStore((state) => state.removeFromCart);
   const increaseQuantity = useCartStore((state) => state.increaseQuantity);
   const decreaseQuantity = useCartStore((state) => state.decreaseQuantity);
+  
+
+  
 
   const handleRemoveFromCart = (item) => {
     removeFromCart(item);
@@ -37,16 +40,29 @@ const CartPage = () => {
           {cartItems.length > 0 ? (
             <div>
               {cartItems.length === 1 ? (
-                <h1 className="text-rose-500 font-bold">{cartItems.length} Item</h1>
+                <h1 className="text-rose-500 font-bold">
+                  {cartItems.length} Item
+                </h1>
               ) : (
-                <h1 className="text-rose-500 font-bold">{cartItems.length} Items</h1>
+                <h1 className="text-rose-500 font-bold">
+                  {cartItems.length} Items
+                </h1>
               )}
               <ul className="space-y-4 mt-10">
                 {cartItems.map((item) => (
-                  <li key={item.id} className="flex items-center bg-white rounded-md shadow-md">
-                    <img src={item.imageUrl} alt={item.name} className="w-16 h-16 object-cover mr-4" />
+                  <li
+                    key={item.id}
+                    className="flex items-center bg-white rounded-md shadow-md"
+                  >
+                    <img
+                      src={item.imageUrl}
+                      alt={item.name}
+                      className="w-16 h-16 object-cover mr-4"
+                    />
                     <div className="w-[260px]">
-                      <h3 className="text-lg font-semibold lg:w-full w-40 truncate">{item.name}</h3>
+                      <h3 className="text-lg font-semibold lg:w-full w-40 truncate">
+                        {item.name}
+                      </h3>
                       <p className="text-gray-600">Price: ${item.price}</p>
                       <div className="flex items-center">
                         <button
@@ -74,10 +90,13 @@ const CartPage = () => {
                 ))}
               </ul>
               <div className="mt-6">
-                <h3 className="text-lg font-semibold">Total Price: ${getTotalPrice()}</h3>
-                <Link href='/checkout'>
+                <h3 className="text-lg font-semibold">
+                  Total Price: ${getTotalPrice()}
+                </h3>
+                <Link href="/checkout">
                   <button
                     className="mt-4 bg-red-500  hover:bg-green-500 text-white font-bold text-lg w-full h-12 rounded-xl"
+                    
                   >
                     Proceed to Buy
                   </button>
@@ -85,7 +104,9 @@ const CartPage = () => {
               </div>
             </div>
           ) : (
-            <p className="text-red-500 font-bold text-center relative top-1/2">Your cart is empty.</p>
+            <p className="text-red-500 font-bold text-center relative top-1/2">
+              Your cart is empty.
+            </p>
           )}
         </div>
       )}

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
-import {products} from '@/utils/constant';
+import supabase from '@/utils/supabase';
 
 const CheckoutPage = ({ product }) => {
   const [firstName, setFirstName] = useState('');
@@ -10,7 +10,7 @@ const CheckoutPage = ({ product }) => {
   const [cardNumber, setCardNumber] = useState('');
   const [expirationDate, setExpirationDate] = useState('');
   const [cvc, setCVC] = useState('');
-  const { name, price, imageUrl, quantity} = product
+  const { name, price, imageUrl} = product
 
   const isFormValid =
   firstName.trim() !== '' &&
@@ -212,6 +212,17 @@ export default CheckoutPage;
 
 
 export async function getStaticPaths() {
+  // Fetch products from Supabase
+  const { data: products, error } = await supabase
+    .from('products')
+    .select('slug');
+    
+  if (error) {
+    return {
+      notFound: true,
+    };
+  }
+
   // Generate paths for all products
   const paths = products.map((product) => ({
     params: { slug: product.slug },
@@ -220,20 +231,34 @@ export async function getStaticPaths() {
   return { paths, fallback: false };
 }
 
+
 export async function getStaticProps({ params }) {
-    // Fetch the data for the specific product based on the slug
-    const {slug} = params;
-    const product = products.find((product) => product.slug === slug);
-  
-    if (!product) {
-      return {
-        notFound: true,
-      };
-    }
-  
+  const { slug } = params;
+
+  // Fetch the data for the specific product based on the slug from Supabase
+  const { data, error } = await supabase
+    .from('products')
+    .select('*')
+    .eq('slug', slug)
+    .single();
+
+  if (error) {
+    return {
+      notFound: true,
+    };
+  }
+
+  if (data) {
+    const product = data;
+
     return {
       props: {
         product,
       },
     };
   }
+
+  return {
+    notFound: true,
+  };
+}
