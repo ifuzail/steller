@@ -1,6 +1,7 @@
 # Steller E-Commerce Store
 
 Welcome to the Steller E-Commerce Store GitHub repository! This repository contains the source code and documentation for the Steller E-Commerce Store, a modern online shopping platform built using Next.js, Tailwind CSS, and Zustand state management library.
+Visit Steller on: https://stellerapp.netlify.com/
 
 ![STELLER](https://github.com/ifuzail/steller/assets/135622982/2dd3eb41-9776-4c0c-a298-5587b73838dd)
 
