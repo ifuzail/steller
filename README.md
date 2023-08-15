@@ -28,6 +28,9 @@ Visit Steller on: https://stellerapp.netlify.com/
 
 Steller is a modern E-Commerce store aimed at providing users with a seamless shopping experience. The platform is built using the latest web technologies, offering fast and responsive user interfaces.
 
+## Dev Map
+![steller dev Map](https://github.com/ifuzail/steller/assets/135622982/aee75e1e-5f8d-4613-85cb-d48f41da860c)
+
 ## Technologies Used
 
 - **Next.js:** A React framework for building server-rendered applications. It provides benefits like improved performance, SEO optimization, and server-side rendering out of the box.
