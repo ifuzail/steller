@@ -1,12 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import {BsCart3, BsFilter} from 'react-icons/bs'
 import {IoIosClose} from 'react-icons/io'
 import CartPage from "./cart";
 import useCartStore from "@/store/cartFunc";
 import Link from "next/link";
 import Topbar from "./topbar";
-import SignOutButton from "./SignOut";
-import supabase from "@/utils/supabase";
+import { UserButton } from "@clerk/nextjs";
 
 
 const Navbar = () => {
@@ -15,31 +14,8 @@ const Navbar = () => {
   const cartItems = useCartStore((state) => state.cartItems);
 
   const [isFilterOpen, setIsFilterOpen] = useState(false);
-  const [user, setUser] = useState(null);
-  const [session, setSession] = useState(null);
 
-  useEffect(() => {
-    const session = supabase.auth.getSession();
-    setSession(session);
-
-    if (session?.user) {
-      setUser(session.user);
-    }
-
-    const { data: authListener } = supabase.auth.onAuthStateChange(
-      async (event, session) => {
-        setSession(session);
-        if (session?.user) {
-          setUser(session.user);
-        }
-      }
-    );
-
-    return () => {
-      authListener.subscription;
-    };
-  }, []);
-
+  
   return (
     <nav className="bg-gray-50 fixed top-0 left-0 right-0 z-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -80,25 +56,7 @@ const Navbar = () => {
               )}
             </button>
             {isCartOpen && <CartPage />}
-           {user ? (
-              <div className="flex items-center space-x-2 ">
-                <img
-                  src={user.user_metadata.avatar_url}
-                  alt=""
-                  className="w-8 h-8 rounded-full"
-                />
-                <span className="text-slate-700 text-sm font-bold  lg:block hidden ">
-                  {user.user_metadata.full_name}
-                </span>
-                <SignOutButton />
-              </div>
-            ) : (
-              <Link href="/sign-in"
-                 className="text-slate-700 hover:text-slate-900">
-                  Sign In
-                
-              </Link>
-            )}
+         <UserButton afterSignOutUrl="/"/>
           </div>
         </div>
       </div>
